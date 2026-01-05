@@ -1,0 +1,54 @@
+body {
+  max-width: 100vw;
+}
+
+#TitleBanner {
+  position: sticky;
+  top: 0px;
+  background-color: #fff;
+}
+
+#AppLogo {
+  height: 2em;
+  vertical-align: bottom;
+}
+
+#CardBox {
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  flex-wrap: wrap;
+}
+
+.video_card {
+  flex-basis: 300px;
+  min-width: 200px;
+  padding: 3px;
+  box-sizing: content-box;
+}
+
+.video_card img {
+  display: block;
+  max-width: 100%;
+  width: 300px;
+}
+
+.video_card_title {
+  font-weight: bold;
+}
+
+.video_card_meta {
+  font-size: 80%;
+}
+
+.video_card_user {
+  margin-inline-end: 1.5em;
+}
+
+.video_card_date {
+  color: #000000a8;
+}
+
+#CardBox h2 {
+  flex-basis: 100%;
+}
