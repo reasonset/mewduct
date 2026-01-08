@@ -1,18 +1,20 @@
 <html>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Mewduct</title>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <script src="/config.js"></script>
+    <script src="/initializer.js" defer="defer"></script>
+    <link rel="stylesheet" type="text/css" href="/mewduct.css" />
     <script src="https://cdn.plyr.io/3.8.3/plyr.js"></script>
     <script src="/play.js" type="module"></script>
-    <link rel="stylesheet" type="text/css" href="/mewduct.css" />
     <link rel="stylesheet" href="https://cdn.plyr.io/3.8.3/plyr.css" />
   </head>
   <body>
     <div id="MainScreen">
       <header id="TitleBanner">
         <a href="/">
-          <h1><img src="/assets/mewduct-logo.svg" id="AppLogo" />MewDuct</h1>
+          <h1><img src="/assets/mewduct-logo.svg" id="AppLogo" />MewDuct</h1><h2 id="InstanceName"></h2>
         </a>
         <hr />
       </header>
@@ -22,7 +24,10 @@
         </div>
         <section id="VideoDescription">
           <h2 id="VideoTitle"></h2>
-          <div><span id="UploadTS"></span></div>
+          <section id="VideoReaction">
+            <button class="reaction_button">👍️</button>
+          </section>
+          <div><span id="UploadUser"></span> <span id="UploadTS"></span></div>
           <textarea id="VideoDescriptionText" readonly="readonly" rows="8"></textarea>
         </section>
       </div>

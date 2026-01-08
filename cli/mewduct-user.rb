@@ -40,7 +40,7 @@ class MewductUser
       meta
     end
 
-    media = media.sort_by {|i| i["created_at"]}.reverse
+    media = media.reject {|i| i["unlisted"] }.sort_by {|i| i["created_at"]}.reverse
 
     File.open(File.join(@webroot, "user", @user_id, "videos.json"), "w") do |f|
       JSON.dump(media, f)

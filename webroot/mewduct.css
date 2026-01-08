@@ -5,7 +5,17 @@ body {
 #TitleBanner {
   position: sticky;
   top: 0px;
-  background-color: #fff;
+}
+
+#TitleBanner h1 {
+  display: inline-block;
+  margin: 4px;
+  margin-inline-end: 1.5em;
+}
+
+#TitleBanner h2 {
+  display: inline-block;
+  margin: 4px;
 }
 
 #TitleBanner a {
@@ -51,10 +61,6 @@ body {
   margin-inline-end: 1.5em;
 }
 
-.video_card_date {
-  color: #000000a8;
-}
-
 a.video_card_link {
   text-decoration: none;
   color: inherit;
@@ -85,8 +91,67 @@ a.video_card_link {
   font-size: inherit;
 }
 
+#VideoReaction {
+  display: none;
+}
+
 /********** THEMES **********/
 
 body {
   color: #333;
+}
+
+#TitleBanner {
+  background-color: #fff;
+}
+
+#TitleBanner h1 {
+  color: #FA833B;
+}
+
+a {
+  color: #0e71f2;
+}
+
+.video_card_title, #VideoTitle {
+  color: #000;
+}
+
+.video_card_date {
+  color: #666;
+}
+
+textarea {
+  background-color: transparent;
+  color: inherit;
+}
+
+.reaction_button {
+  border: 1px solid #333;
+  border-radius: 5px;
+  background-color: transparent;
+  font-size: 28px;
+}
+
+@media screen and (prefers-color-scheme: dark) {
+  body, #TitleBanner {
+    background-color: #0f0f0f;
+    color: #fff;
+  }
+
+  .video_card_title, #VideoTitle {
+    color: #fff;
+  }
+
+  .video_card_date {
+    color: #ccc;
+  }
+
+  a {
+    color: #f3d57d;
+  }
+
+  .reaction_button {
+    border-color: #e8e8e8;
+  }
 }
