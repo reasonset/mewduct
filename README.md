@@ -1,4 +1,6 @@
-# ![](doc/img/mewduct-logo.png) Mewduct
+# Mewduct
+
+![Mewduct Logo](doc/img/mewduct-logo.png)
 
 Video streaming CMS without a server-side application
 

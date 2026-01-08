@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <script src="/config.js"></script>
+    <link rel="stylesheet" type="text/css" href="/mewduct.css" />
+    <script src="/user.mjs" type="module"></script>
+  </head>
+  <body>
+    <div id="MainScreen">
+      <header id="TitleBanner">
+        <a href="/">
+          <h1><img src="/assets/mewduct-logo.svg" id="AppLogo" />MewDuct</h1>
+        </a>
+        <hr />
+      </header>
+      <div id="UserBanner">
+        <img class="usericon" /><span class="username_h" id="BannerUserName"></span>
+      </div>
+      <section id="UserVideos">
+        <h2>Uploaded videos</h2>
+        <div class="card_box" id="UserVideosBox"></div>
+      </section>
+      <section id="UserPlaylists">
+        <h2>Their playlists</h2>
+        <div id="UserPlaylistsBox"></div>
+      </section>
+      <section id="NoSuchUser">
+        <h2>Oops!</h2>
+        <div id="NoSuchUserText">No such user <code id="NoSuchUserName"></code></div>
+      </section>
+    </div>
+  </body>
+</html>

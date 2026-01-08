@@ -1,18 +1,30 @@
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta charset="utf-8" />
     <script src="/config.js"></script>
-    <script src="/main.js"></script>
-    <script src="/plyr-loader.js" defer="defer"></script>
+    <script src="https://cdn.plyr.io/3.8.3/plyr.js"></script>
+    <script src="/play.js" type="module"></script>
+    <link rel="stylesheet" type="text/css" href="/mewduct.css" />
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.8.3/plyr.css" />
   </head>
   <body>
     <div id="MainScreen">
       <header id="TitleBanner">
-        <h1>MewDuct</h1>
+        <a href="/">
+          <h1><img src="/assets/mewduct-logo.svg" id="AppLogo" />MewDuct</h1>
+        </a>
         <hr />
       </header>
       <div id="PlayerView">
-        <div id="VideoArea"></div>
-        <div id="VideoDescription"></div>
+        <div id="VideoArea">
+          <video id="PlyrVideo"></video>
+        </div>
+        <section id="VideoDescription">
+          <h2 id="VideoTitle"></h2>
+          <div><span id="UploadTS"></span></div>
+          <textarea id="VideoDescriptionText" readonly="readonly" rows="8"></textarea>
+        </section>
       </div>
     </div>
   </body>

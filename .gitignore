@@ -1,3 +1,6 @@
 webroot/media
 webroot/user
 webroot/meta
+videoout
+*.local
+*.local.*

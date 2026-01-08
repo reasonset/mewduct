@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <title>Mewduct</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <script src="/config.js"></script>
+    <script src="/initializer.js"></script>
+    <link rel="stylesheet" type="text/css" href="/mewduct.css" />
+% case variant
+% when "index"
+    <script src="/index.mjs" type="module"></script>
+% when "user"
+    <script src="/user.mjs" type="module"></script>
+% when "play"
+    <script src="https://cdn.plyr.io/3.8.3/plyr.js"></script>
+    <script src="/play.js" type="module"></script>
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.8.3/plyr.css" />
+% end
+  </head>
+  <body>
+    <div id="MainScreen">
+      <header id="TitleBanner">
+        <a href="/">
+          <h1><img src="/assets/mewduct-logo.svg" id="AppLogo" />MewDuct</h1>
+        </a>
+        <hr />
+      </header>
+% case variant
+% when "index"
+      <nav id="CardBox"></nav>
+% when "user"
+      <div id="UserBanner">
+        <img class="usericon" /><span class="username_h" id="BannerUserName"></span>
+      </div>
+      <section id="UserVideos">
+        <h2>Uploaded videos</h2>
+        <div class="card_box" id="UserVideosBox"></div>
+      </section>
+      <section id="UserPlaylists">
+        <h2>Their playlists</h2>
+        <div id="UserPlaylistsBox"></div>
+      </section>
+      <section id="NoSuchUser">
+        <h2>Oops!</h2>
+        <div id="NoSuchUserText">No such user <code id="NoSuchUserName"></code></div>
+      </section>
+% when "play"
+      <div id="PlayerView">
+        <div id="VideoArea">
+          <video id="PlyrVideo"></video>
+        </div>
+        <section id="VideoDescription">
+          <h2 id="VideoTitle"></h2>
+          <div><span id="UploadTS"></span></div>
+          <textarea id="VideoDescriptionText" readonly="readonly" rows="8"></textarea>
+        </section>
+      </div>
+% end
+    </div>
+  </body>
+</html>
