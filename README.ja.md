@@ -49,6 +49,76 @@ Mewductは視聴者にユーザーアカウントを要求しない。
 
 ユーザーが自分ひとりである場合専用のやり方。
 
+## インストール
+
+1. `webroot/`以下のファイルをウェブサーバーの公開ルート(e.g. `/srv/http/`)に配置する
+2. 配置した`config.js`を編集する
+
+## アップデート
+
+1. `git pull`
+2. `rsync -rvu --exclude config.js webroot/ /path/to/webroot/`
+
+## サーバーの設定
+
+Mewductは`/play.html/${user_id}/${media_id}`のようなURLでアクセスすることになる。
+こうしたURLで`play.html`が表示される必要があり、多くのウェブサーバーでは設定が必要となる。
+
+### Nginx
+
+```
+server {
+    # ...
+
+    root /path/to/webroot;
+
+    location /user.html/ {
+        try_files /user.html =404;
+    }
+
+    location /play.html/ {
+        try_files /play.html =404;
+    }
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+}
+```
+
+### Caddy
+
+```
+example.com {
+    root * /path/to/webroot
+    file_server
+
+    rewrite /user.html/* /user.html
+    rewrite /play.html/* /play.html
+    
+    try_files {path} /index.html
+}
+```
+
+### Lighttpd
+
+```
+server.modules += ( "mod_rewrite" )
+
+url.rewrite-once = (
+    "^/user\.html/.*" => "/user.html",
+    "^/play\.html/.*" => "/play.html",
+)
+```
+
+### Apache
+
+```
+<FilesMatch "^(user|play)\.html$">
+    AcceptPathInfo On
+</FilesMatch>
+```
+
 ## ビデオのインポートと更新
 
 ### 新しいビデオを生成する
@@ -149,4 +219,30 @@ username(表示名)を対話的に入力する。
 
 編集可能なユーザー情報のみからなるYAMLファイルが`$EDITOR`で開かれる。
 これを編集し保存すると反映される。
+
+## カスタマイズする
+
+### パラメータの編集
+
+解像度の候補やVP8に切り替わる解像度などのパラメータはスクリプトに組み込まれている。
+
+こうしたパラメータや挙動が希望に沿わない場合、スクリプトを改造することをおすすめする。
+
+`*.local`および`*.local.*`ファイルは`.gitignore`により除外されており、これらのネーミングを採用することでリポジトリ更新時に煩わされることなくカスタムスクリプトを利用できる。
+
+## 👍️
+
+👍️ リアクション機能は通常はないものの、`config.js`の`reaction_post_to`をセットすることでリアクション機能を有効にすることができる。
+
+リアクションを受け取るサーバーアプリケーションはMewductには含まれていない。
+
+`reaction_get_from`をセットすることでリアクションの数を表示することができる。
+
+リアクション数を返すサーバーアプリケーションはMewductには含まれていない。
+
+## コメント機能
+
+コメント機能はMewductに含まれていませんが、`player_additional_1`および`player_additional_2`にHTML文字列を記述することで、プレイヤービューの追加`section`要素の`innerHTML`として組み込まれる。
+
+これを利用してコメント機能を追加することができる。
 

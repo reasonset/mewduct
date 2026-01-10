@@ -13,7 +13,8 @@
     <script src="/user.mjs" type="module"></script>
 % when "play"
     <script src="https://cdn.plyr.io/3.8.3/plyr.js"></script>
-    <script src="/play.js" type="module"></script>
+    <script src="/play.mjs" type="module"></script>
+    <script src="/reaction.mjs" type="module"></script>
     <link rel="stylesheet" href="https://cdn.plyr.io/3.8.3/plyr.css" />
 % end
   </head>
@@ -60,10 +61,18 @@
         <section id="VideoDescription">
           <h2 id="VideoTitle"></h2>
           <section id="VideoReaction">
-            <button class="reaction_button">👍️</button>
+            <button class="reaction_button" data-reactiontype="good">👍️</button>
+            <button class="reaction_button" data-reactiontype="favorite">⭐️</button>
+            <button class="reaction_button" data-reactiontype="love">♥️</button>
+            <span id="LikeCount"></span>
+            <div id="NegativeReaction">
+              <button class="reaction_button" data-reactiontype="bad" data-negative="yes">👎️</button>
+            </div>
           </section>
           <div><span id="UploadUser"></span> <span id="UploadTS"></span></div>
           <textarea id="VideoDescriptionText" readonly="readonly" rows="8"></textarea>
+          <section id="PlayerAdditionalSection1"></section>
+          <section id="PlayerAdditionalSection2"></section>
         </section>
       </div>
 % end

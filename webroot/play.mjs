@@ -33,6 +33,15 @@ async function mewduct() {
   const plyr = new Plyr("#PlyrVideo")
   plyr.source = sources
 
+  if (MEWDUCT_CONFIG.player_additional_1) {
+    const box = document.getElementById("PlayerAdditionalSection1")
+    box.innerHTML = MEWDUCT_CONFIG.player_additional_1
+  }
+
+  if (MEWDUCT_CONFIG.player_additional_2) {
+    const box = document.getElementById("PlayerAdditionalSection2")
+    box.innerHTML = MEWDUCT_CONFIG.player_additional_2
+  }
 }
 
 mewduct()

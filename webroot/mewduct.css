@@ -111,6 +111,19 @@ a.video_card_link {
   display: none;
 }
 
+#LikeCount {
+  display: inline-block;
+  border: 1px solid #99999972;
+  border-radius: 3px;
+  padding: 3px;
+  display: none
+}
+
+#NegativeReaction {
+  margin-inline-start: 1.5em;
+  display: none;
+}
+
 #UsersBox {
   display: flex;
 }
@@ -136,6 +149,9 @@ a.video_card_link {
   font-size: 200%;
 }
 
+#PlayerAdditionalSection1, #PlayerAdditionalSection2 {
+  width: 100%;
+}
 
 /********** THEMES **********/
 
@@ -169,11 +185,17 @@ textarea {
   color: inherit;
 }
 
-.reaction_button {
+.reaction_button, .lovebox {
   border: 1px solid #333;
   border-radius: 5px;
   background-color: transparent;
   font-size: 28px;
+}
+
+.lovebox {
+  display: inline-block;
+  padding-left: 2.5em;
+  padding-right: 2.5em;
 }
 
 #UserDescriptionText {
