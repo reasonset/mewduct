@@ -27,6 +27,7 @@ class MewductHome
     Dir.children(File.join(@webroot, "user")).each do |userdir|
       fp = File.join(@webroot, "user", userdir, "usermeta.json")
       user = JSON.load File.read fp
+      user["user_id"] = userdir
       all_users.push user
     end
 

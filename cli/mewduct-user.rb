@@ -1,7 +1,11 @@
 #!/bin/env ruby
 require 'json'
+require 'yaml'
+require 'tempfile'
 
 class MewductUser
+  USER_EDITABLE_TERMS = ["username", "description"]
+
   def initialize webroot, user_id
     @webroot = webroot
     @user_id = user_id
@@ -51,6 +55,31 @@ class MewductUser
       JSON.dump(usermeta, f)
     end
   end
+
+  def edit
+    usermeta = JSON.load File.read File.join(@webroot, "user", @user_id, "usermeta.json")
+
+    mod = usermeta.slice(*USER_EDITABLE_TERMS)
+
+    Tempfile.create(["", ".yaml"]) do |f|
+      f.write YAML.dump mod
+      f.flush
+      editor = ENV["EDITOR"] || "vi"
+      system(editor, f.path)
+      f.seek(0)
+      mod = YAML.load(f).slice(*USER_EDITABLE_TERMS)
+    end
+
+    if !mod["username"] || mod["username"] =~ /^\s*$/ || mod["username"].include?("\n")
+      exit 1
+    end
+
+    File.open(File.join(@webroot, "user", @user_id, "usermeta.json"), "w") do |f|
+      JSON.dump(usermeta.merge(mod), f)
+    end
+
+    puts "Update success"
+  end
 end
 
 action = ARGV.shift
@@ -63,10 +92,12 @@ case action&.downcase
 when "create"
   print "User display name? "
   username = $stdin.gets.strip
-  if !username || username.empty?
+  if !username || username.empty? || username =~ /^\s*$/ || username.include?("\n")
     exit 1
   end
   user.create username
 when "update"
   user.update
+when "edit"
+  user.edit
 end

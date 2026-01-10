@@ -9,7 +9,6 @@ async function userpage() {
     const user_meta = await get(`/user/${username}/usermeta.json`)
 
     user.meta = user_meta
-    console.log(user.meta)
   } catch(e) {
     if (String(e) == "fetch returns HTTP 404") {
       const nosuch = document.getElementById("NoSuchUserName")
@@ -20,15 +19,21 @@ async function userpage() {
       throw e
     }
   }
+
+  document.getElementById("UserBannerIcon").src = `/user/${username}/icon.webp`
   
   const username_box = document.getElementById("BannerUserName")
   username_box.appendChild(document.createTextNode(user.meta.username))
+
+  if (user.meta.description) {
+    const user_description = document.getElementById("UserDescriptionText")
+    user_description.value = user.meta.description
+  }
 
   const videos = await get(`/user/${username}/videos.json`)
 
   const box = document.getElementById("UserVideosBox")
   
-  console.log(videos)
   for (const meta of videos) {
     box.appendChild(createCard(meta))
   }
