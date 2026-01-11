@@ -97,7 +97,7 @@ class MewductUpdate
         "code" => $1,
         "filename" => fn,
         "filepath" => File.join(@webroot, "media", @user_id, @media_id, fn),
-        "srcpath" => ["media", @user_id, @media_id, fn].join("/")
+        "srcpath" => ["", "media", @user_id, @media_id, fn].join("/")
       })
     end
 
