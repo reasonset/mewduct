@@ -163,8 +163,6 @@ If this is the first update, it also generates the required metadata JSON.
 
 Replacing existing video files or subtitle files is automatically reflected without running an update.
 
-Subtitle files named `captions.<langcode>.vtt` are imported as subtitles during update.
-
 ## Updating Video Information
 
 Video information is edited in `titlemeta.yaml`.  
@@ -218,6 +216,52 @@ Edits user information.
 
 A YAML file containing editable fields opens in `$EDITOR`.  
 Changes are applied when saved.
+
+## Advanced Video Settings
+
+### Subtitles
+
+If a file named `captions.<langcode>.vtt` exists in the video directory, it will be treated as a subtitle file.
+
+To apply newly added subtitle files, you need to run `mewduct-update.rb`.
+
+### Multilingual Support and Translations
+
+In `titlemeta.yaml`, you can specify `title` and `description` for different languages using the `translations` key.
+
+Example:
+
+```yaml
+translations:
+  en:
+    title: Super English video
+    description: This is an awesome English video.
+```
+
+When using this feature, it is recommended to specify `lang: <langcode>`.
+
+If `lang` is specified and a matching language exists in either `nagivation.languages` or the user's Mewduct language setting, the default `title` and `description` will be used with priority.
+
+If `lang` is not specified, the default `title` and `description` are used only as a fallback when no matching language code exists in `translations`.
+
+`langcode` is based on ISO 639-1 language codes and does not support sublanguages.  
+Therefore, `en-US` becomes `en`, and `zh-TW` becomes `zh`.
+
+Example:
+
+```yaml
+title: Original title
+descrpition: Original description
+lang: en
+unlisted: false
+traslations:
+  ja:
+    title: 日本語のタイトル
+    description: 日本語の説明
+  zh:
+    title: 中文的标题
+    description: 中文的说明文
+```
 
 ## Customization
 

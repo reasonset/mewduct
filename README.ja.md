@@ -255,7 +255,7 @@ title: Original title
 descrpition: Original description
 lang: en
 unlisted: false
-traslate:
+traslations:
   ja:
     title: 日本語のタイトル
     description: 日本語の説明

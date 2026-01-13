@@ -5,6 +5,7 @@ export function createCard(meta) {
   card.className = "video_card"
   const card_img = document.createElement("img")
   card_img.src = `/media/${meta.user}/${meta.media_id}/thumbnail.webp`
+  card_img.loading = "lazy"
   const player_link = document.createElement("a")
   player_link.href = `/play.html/${meta.user}/${meta.media_id}`
   player_link.className = "video_card_link"
