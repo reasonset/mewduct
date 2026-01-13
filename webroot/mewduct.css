@@ -160,7 +160,7 @@ a.video_card_link {
   vertical-align: middle;
 }
 
-.user_card_wrapper img {
+.usericon {
   width: 150px;
   max-width: 150px;
   max-height: 100%;
@@ -328,5 +328,14 @@ code {
 @media screen and (max-width: 679px) {
   #TitleBanner h1, #TitleBannerRight {
     font-size: 1.35em;
+  }
+
+  .usericon {
+    height: 2.5em;
+    max-width: 100px;
+  }
+
+  .user_card_username {
+    font-size: 0.8em;
   }
 }
