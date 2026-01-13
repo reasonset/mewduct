@@ -64,11 +64,21 @@ do
   valid_size+=($i)
 done
 
-if [[ -z "$outdir" || ! -d "$outdir" ]]
+if [[ -z "$outdir" ]]
 then
   outdir=./videoout
-  [[ -e $outdir ]] || mkdir -v $outdir
 fi
+
+[[ -e $outdir ]] || mkdir -v $outdir
+
+cat > "$outdir"/titlemeta.yaml <<EOF
+---
+title: ""
+description: ""
+unlisted: false
+lang: en
+translations: {}
+EOF
 
 typeset ext vcodec scale acodec samesize=no
 if (( video_shorter <= 360 || ${#valid_size} == 0 ))
@@ -124,17 +134,9 @@ else
       cd "$crd"
       rm -rv "$workdir"
     )
-
-
   done
 fi
 
 # Creating thumbnail
 ffmpeg -i "$source_file" -vf "thumbnail=1800" -frames:v 1 "$outdir/thumbnail.webp"
 
-cat > "$outdir"/titlemeta.yaml <<EOF
----
-title: ""
-description: ""
-unlisted: false
-EOF
