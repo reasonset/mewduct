@@ -114,8 +114,10 @@ else
         scale_params=("-vf" "scale=$scale")
       fi
 
-      if ! ffmpeg -i "$source_file" -c:v "$vcodec" -b:v "${map_bv[$short]}" $scale_params -pass 1 -an -f null /dev/null &&
-      ffmpeg -i "$source_file" -c:v "$vcodec" -b:v "${map_bv[$short]}" $scale_params -pass 2 -c:a $acodec "$outdir/$short.$ext"
+      if ! {
+        ffmpeg -i "$source_file" -c:v "$vcodec" -b:v "${map_bv[$short]}" $scale_params -pass 1 -an -f null /dev/null &&
+        ffmpeg -i "$source_file" -c:v "$vcodec" -b:v "${map_bv[$short]}" $scale_params -pass 2 -c:a $acodec "$outdir/$short.$ext"
+      }
       then
         rm -v "$outdir/$short.$ext"
       fi
