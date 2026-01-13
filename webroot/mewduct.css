@@ -339,4 +339,8 @@ code {
   .user_card_username {
     font-size: 0.8em;
   }
+
+  .username_h {
+    font-size: 125%;
+  }
 }

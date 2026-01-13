@@ -48,13 +48,17 @@ fi
 typeset -a valid_size=()
 for i in 320 360 426 480 576 640 720 1080
 do
+  if (( video_shorter < i ))
+  then
+    continue
+  fi
+
   typeset -F divr=$(( video_shorter * 1.0 / i  ))
 
   typeset -F longer_processed=$(( video_longer / divr ))
   typeset -F longer_processed_rem=$(( longer_processed % 1 ))
   if (( longer_processed_rem != 0 ))
   then
-    print not int
     continue
   fi
   valid_size+=($i)
