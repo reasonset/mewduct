@@ -332,6 +332,7 @@ code {
 
   .usericon {
     height: 2.5em;
+    width: unset;
     max-width: 100px;
   }
 
