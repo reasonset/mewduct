@@ -8,7 +8,7 @@ const createUserCard = function(user_meta) {
 
   const img = document.createElement("img")
   img.src = `/user/${user_meta.user_id}/icon.webp`
-  img.className = ".usericon"
+  img.className = "usericon"
   const username = document.createElement("span")
   username.appendChild(document.createTextNode(user_meta.username))
   username.className = "user_card_username"
