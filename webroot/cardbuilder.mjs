@@ -1,4 +1,6 @@
-const createCard = function(meta) {
+import { getTitle } from "/m17n.mjs"
+
+export function createCard(meta) {
   const card = document.createElement("div")
   card.className = "video_card"
   const card_img = document.createElement("img")
@@ -9,7 +11,8 @@ const createCard = function(meta) {
   player_link.appendChild(card_img)
   const card_title = document.createElement("div")
   card_title.className = "video_card_title"
-  card_title.appendChild(document.createTextNode(meta.title))
+  const title = getTitle(meta)
+  card_title.appendChild(document.createTextNode(title))
   const card_meta = document.createElement("div")
   card_meta.className = "video_card_meta"
   const card_meta_user = document.createElement("span")
@@ -36,5 +39,3 @@ const createCard = function(meta) {
 
   return card
 }
-
-export {createCard}

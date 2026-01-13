@@ -49,6 +49,14 @@ class MewductUpdate
       titlemeta = jsonmeta.merge titlemeta
     end
 
+    transl = {}
+    if titlemeta["translations"]
+      titlemeta["translations"].each do |k,v|
+        transl[k.downcase.split("-").first] = v
+      end
+    end
+    titlemeta["translations"] = transl
+
     @titlemeta = titlemeta
     titlemeta
   end

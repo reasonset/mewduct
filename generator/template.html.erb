@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <script src="/config.js"></script>
     <script src="/initializer.js" defer="defer"></script>
+    <script src="/settings.mjs" defer="defer" type="module"></script>
     <link rel="stylesheet" type="text/css" href="/mewduct.css" />
 % case variant
 % when "index"
@@ -22,9 +23,13 @@
   <body>
     <div id="MainScreen">
       <header id="TitleBanner">
-        <a href="/">
-          <h1><img src="/assets/mewduct-logo.svg" id="AppLogo" />MewDuct</h1>
-        </a>
+        <div id="TitleBannerLeft">
+          <a href="/">
+            <h1><img src="/assets/mewduct-logo.svg" id="AppLogo" />MewDuct</h1>
+          </a>
+        </div>
+        <div id="TitleBannerCenter"></div>
+        <div id="TitleBannerRight"><span id="SettingsGear">⚙️</span></div>
       </header>
 % case variant
 % when "index"
@@ -78,5 +83,22 @@
       </div>
 % end
     </div>
+    <section id="SettingsScreen">
+      <div class="modal_internal">
+        <h2>Settings</h2>
+        <form id="SettingsForm">
+          <fieldset>
+            <legend>User Settings</legend>
+            <h3>Language</h3>
+            <p>e.g. <code>ja, en, fr</code></p>
+            <input type="text" size="24" name="prefer_language" /><br />
+          </fieldset>
+          <div class="right thin_margin">
+            <button type="button" id="SettingsBtnCancel" class="form_btn form_cancel">Cancel</button>
+            <button type="submit" class="form_btn form_submit">Save</button>
+          </div>
+        </form>
+      </div>
+    </section>
   </body>
 </html>

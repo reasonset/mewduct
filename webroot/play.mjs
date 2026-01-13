@@ -1,4 +1,5 @@
-import { get } from "/get.mjs"
+import { localizeMeta } from "/m17n.mjs"
+import { get } from "/http.mjs"
 
 async function mewduct() {
   const split_path = location.pathname.split("/")
@@ -9,9 +10,10 @@ async function mewduct() {
   const videometa = await get(`/media/${user_id}/${media_id}/meta.json`)
   const usermeta = await get(`/user/${user_id}/usermeta.json`)
   
+  const local_meta = localizeMeta(videometa)
 
   const title_elm = document.getElementById("VideoTitle")
-  title_elm.appendChild(document.createTextNode(videometa.title))
+  title_elm.appendChild(document.createTextNode(local_meta.title))
 
   const un_elm = document.getElementById("UploadUser")
   const un_elm_a = document.createElement("a")
@@ -28,7 +30,7 @@ async function mewduct() {
   ts_elm.appendChild(time_elm)
 
   const desc_elm = document.getElementById("VideoDescriptionText")
-  desc_elm.value = videometa.description || ""
+  desc_elm.value = local_meta.description || ""
 
   const plyr = new Plyr("#PlyrVideo")
   plyr.source = sources

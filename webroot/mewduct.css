@@ -5,12 +5,20 @@ body {
 #TitleBanner {
   position: sticky;
   top: 0px;
+  display: flex;
+  width: 100%;
+}
+
+#TitleBanner > div {
+  flex-grow: 1;
+  flex-shrink: 0;
 }
 
 #TitleBanner h1 {
   display: inline-block;
   margin: 4px;
   margin-inline-end: 1.5em;
+  font-size: 2em;
 }
 
 #TitleBanner h2 {
@@ -26,6 +34,19 @@ body {
 #AppLogo {
   height: 2em;
   vertical-align: bottom;
+}
+
+#TitleBannerCenter {
+  text-align: center;
+}
+
+#TitleBannerRight {
+  text-align: right;
+  font-size: 2em;
+}
+
+#SettingsGear {
+  cursor: pointer;
 }
 
 #InstanceName {
@@ -153,6 +174,28 @@ a.video_card_link {
   width: 100%;
 }
 
+#SettingsScreen {
+  position: fixed;
+  width: 100dvw;
+  height: 100dvh;
+  top: 0px;
+  left: 0px;
+  display: none;
+}
+
+.modal_internal {
+  max-width: 800px;
+  margin: auto;
+}
+
+.right {
+  text-align: right;
+}
+
+.thin_margin {
+  margin-block-start: 0.3em;
+}
+
 /********** THEMES **********/
 
 body {
@@ -202,6 +245,36 @@ textarea {
   background-color: #66666629;
 }
 
+#SettingsScreen {
+  background-color: #fffffff8;
+}
+
+.form_btn {
+  background-color: #fff;
+  padding: 0.45em;
+  font-size: 1.15em;
+  border-radius: 8px;
+  border-style: solid;
+  outline: 0 none;
+  font-weight: bolder;
+}
+
+.form_cancel {
+  color: #ff7b39;
+  border-color: #ff7b39;
+}
+
+.form_submit {
+  background-color: #0564bd;
+  border-color: #0564bd;
+  color: #fff;
+}
+
+code {
+  color: #f14e13;  
+}
+
+
 @media screen and (prefers-color-scheme: dark) {
   body, #TitleBanner {
     background-color: #0f0f0f;
@@ -223,7 +296,37 @@ textarea {
   .reaction_button {
     border-color: #e8e8e8;
   }
+
+  #SettingsScreen {
+    background-color: #000000f7;
+  }
+
+  .form_btn {
+    background-color: #0f0f0f;
+  }
+
+  .form_cancel {
+    color: #ff9f39;
+    border-color: #ff9f39;
+  }
+
+  .form_submit {
+    background-color: #78b1e7;
+    border-color: #78b1e7;
+    color: #000;
+  }
+
+  code {
+    color: #f29a48;  
+  }
 }
 
 /********** Disabling **********/
 #UserPlaylists { display: none; }
+
+/********** Mobile **********/
+@media screen and (max-width: 679px) {
+  #TitleBanner h1, #TitleBannerRight {
+    font-size: 1.35em;
+  }
+}

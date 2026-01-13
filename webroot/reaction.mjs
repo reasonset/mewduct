@@ -1,4 +1,4 @@
-import { get, post } from "/get.mjs"
+import { get, post } from "/http.mjs"
 
 async function reaction_setup() {
   if (MEWDUCT_CONFIG.reaction_post_to) {

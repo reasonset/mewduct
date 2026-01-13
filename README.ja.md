@@ -163,8 +163,6 @@ Mewductにおけるビデオの更新は、動画ディレクトリのメタデ�
 
 既存の動画ファイルを更新したり、字幕ファイルを置き換えた場合は更新しなくても自動的に反映される。
 
-字幕ファイルは`captions.<langcode>.vtt`というファイルがあれば、update時にこれを字幕として取り込む。
-
 ## ビデオの情報を更新する
 
 ビデオについての情報は`titlemeta.yaml`を編集することで更新できる。
@@ -220,6 +218,52 @@ username(表示名)を対話的に入力する。
 編集可能なユーザー情報のみからなるYAMLファイルが`$EDITOR`で開かれる。
 これを編集し保存すると反映される。
 
+## 高度な動画の設定
+
+### 字幕
+
+動画ディレクトリに`captions.<langcode>.vtt`というファイルがあれば、これを字幕ファイルとして取り扱う。
+
+新規に追加された字幕ファイルを反映するには、`mewduct-update.rb`する必要がある。
+
+### 多言語と翻訳
+
+`titlemeta.yaml`に`translations`というキーで異なる言語の`title`と`description`を指定できる。
+
+例:
+
+```yaml
+translations:
+  en:
+    title: Super English video
+    description: This is an awesome English video.
+```
+
+これを使用する場合、`lang: <langcode>`を指定することが推奨される。
+
+`lang`が指定されている場合、`nagivation.languages`またはユーザーが設定したMewductの言語に`lang`と一致するものが存在するならば、デフォルトの`title`と`description`が優先して使われる。
+
+`lang`を指定していない場合、デフォルトの`title`と`description`は`translations`に一致する言語コードがない場合のフォールバックでのみ使われる。
+
+`langcode`はISO639-1の言語コードに基づいており、副言語をサポートしない。
+このため、`en-US`は`en`になるし、`zh-TW`は`zh`になる。
+
+例:
+
+```yaml
+title: Original title
+descrpition: Original description
+lang: en
+unlisted: false
+traslate:
+  ja:
+    title: 日本語のタイトル
+    description: 日本語の説明
+  zh:
+    title: 中文的标题
+    description: 中文的说明文
+```
+
 ## カスタマイズする
 
 ### パラメータの編集
@@ -240,9 +284,9 @@ username(表示名)を対話的に入力する。
 
 リアクション数を返すサーバーアプリケーションはMewductには含まれていない。
 
-## コメント機能
+### コメント機能
 
-コメント機能はMewductに含まれていませんが、`player_additional_1`および`player_additional_2`にHTML文字列を記述することで、プレイヤービューの追加`section`要素の`innerHTML`として組み込まれる。
+コメント機能はMewductに含まれていないが、`player_additional_1`および`player_additional_2`にHTML文字列を記述することで、プレイヤービューの追加`section`要素の`innerHTML`として組み込まれる。
 
 これを利用してコメント機能を追加することができる。
 

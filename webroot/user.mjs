@@ -1,5 +1,5 @@
 import { createCard } from "/cardbuilder.mjs"
-import { get } from "/get.mjs"
+import { get } from "/http.mjs"
 
 const user = {}
 const username = location.pathname.split("/")[2]
