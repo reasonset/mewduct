@@ -27,7 +27,7 @@ Mewductは視聴者にユーザーアカウントを要求しない。
 
 ![Home](doc/img/SS/home.webp)
 
-![User page](doc/img/SS/play.webp)
+![User page](doc/img/SS/user.webp)
 
 ![Player page](doc/img/SS/play.webp)
 

@@ -8,7 +8,7 @@ Video streaming CMS without a server-side application
 
 ![Home](doc/img/SS/home.webp)
 
-![User page](doc/img/SS/play.webp)
+![User page](doc/img/SS/user.webp)
 
 ![Player page](doc/img/SS/play.webp)
 
