@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+_dir=${0:a:h}
+
 typeset -A map_bv=(
   320 300k
   360 300k
@@ -71,12 +73,15 @@ fi
 
 [[ -e $outdir ]] || mkdir -v $outdir
 
+typeset video_duration_display=$($_dir/mewduct-duration.zsh "$source_file")
+
 cat > "$outdir"/titlemeta.yaml <<EOF
 ---
 title: ""
 description: ""
 unlisted: false
 lang: en
+duration: "${video_duration_display}"
 translations: {}
 EOF
 

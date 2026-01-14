@@ -10,6 +10,19 @@ export function createCard(meta) {
   player_link.href = `/play.html/${meta.user}/${meta.media_id}`
   player_link.className = "video_card_link"
   player_link.appendChild(card_img)
+  if (meta.duration) {
+    const video_duration = document.createElement("span")
+    let duration_text = meta.duration
+    if (/^\d+$/.test(duration_text)) {
+      // shorter than 1m
+      duration_text = String(Number(duration_text)) + "s"
+    } else {
+      duration_text = duration_text.replace(/^0+/, "")
+    }
+    video_duration.appendChild(document.createTextNode(duration_text))
+    video_duration.className = "video_card_duration"
+    player_link.appendChild(video_duration)
+  }
   const card_title = document.createElement("div")
   card_title.className = "video_card_title"
   const title = getTitle(meta)
