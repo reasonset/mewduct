@@ -27,6 +27,7 @@ export function createCard(meta) {
   card_title.className = "video_card_title"
   const title = getTitle(meta)
   card_title.appendChild(document.createTextNode(title))
+  card_title.title = title
   const card_meta = document.createElement("div")
   card_meta.className = "video_card_meta"
   const card_meta_user = document.createElement("span")

@@ -139,7 +139,7 @@ a.video_card_link {
   display: none;
 }
 
-#VideoArea, #VideoArea video {
+#VideoArea, #VideoAra > .plyr {
   margin: auto;
   max-width: 100%;
   max-height: 70vh;
@@ -243,6 +243,7 @@ a {
 
 .video_card_title, #VideoTitle {
   color: #000;
+  cursor: default;
 }
 
 .video_card_date {
