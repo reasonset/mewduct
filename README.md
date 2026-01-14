@@ -4,6 +4,14 @@
 
 Video streaming CMS without a server-side application
 
+## Screenshots
+
+![Home](doc/img/SS/home.webp)
+
+![User page](doc/img/SS/play.webp)
+
+![Player page](doc/img/SS/play.webp)
+
 ## Description
 
 Mewduct implements a video streaming site using only a client-side application and static files served by a web server.  
