@@ -52,8 +52,7 @@ async function reaction_setup() {
       const params = new URLSearchParams()
       params.append("user_id", user_id)
       params.append("media_id", media_id)
-      // const res = await get(MEWDUCT_CONFIG.reaction_get_from + "?" + params)
-      const res = {count: 100}
+      const res = await get(MEWDUCT_CONFIG.reaction_get_from + "?" + params)
 
       if (res.count) {
         reaction_count.appendChild(document.createTextNode(res.count))
