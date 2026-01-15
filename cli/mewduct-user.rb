@@ -80,6 +80,17 @@ class MewductUser
 
     puts "Update success"
   end
+
+  def check_user_id
+    if !@user_id || # Needs user_id
+      @user_id.empty? || # Empty user_id is invalid.
+      @user_id.include?("/") || # Don't include /
+      @user_id.include?("\n") || # Don't have newline
+      @user_id !~ /^[A-Za-z][A-Za-z0-9_-]{1,62}[A-Za-z0-9]$/ ||
+      File.exist?(File.join(@webroot, "user", @user_id))
+      abort "Invalid user_id"
+    end
+  end
 end
 
 action = ARGV.shift
@@ -90,6 +101,7 @@ user = MewductUser.new webroot, user_id
 
 case action&.downcase
 when "create"
+  user.check_user_id
   print "User display name? "
   username = $stdin.gets.strip
   if !username || username.empty? || username =~ /^\s*$/ || username.include?("\n")
