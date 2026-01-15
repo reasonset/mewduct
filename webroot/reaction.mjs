@@ -18,8 +18,7 @@ async function reaction_setup() {
       reaction_sent = true
 
       try {
-        // await post(MEWDUCT_CONFIG.reaction_post_to, body)
-        void(0)
+        await post(MEWDUCT_CONFIG.reaction_post_to, body)
       } catch(e) {
         console.error("POST reaction failed.")
         console.error(e)
@@ -39,7 +38,7 @@ async function reaction_setup() {
         user_id: user_id,
         media_id: media_id,
         reaction: i.dataset.reactiontype,
-        negative: !!i.dataset.negative
+        negative: (i.dataset.negative == "yes")
       }
 
       i.addEventListener("click", e => {
@@ -54,7 +53,7 @@ async function reaction_setup() {
       params.append("media_id", media_id)
       const res = await get(MEWDUCT_CONFIG.reaction_get_from + "?" + params)
 
-      if (res.count) {
+      if (res.count || res.count === 0) {
         reaction_count.appendChild(document.createTextNode(res.count))
       }
     }
