@@ -21,6 +21,9 @@ async function mewduct() {
   un_elm_a.appendChild(document.createTextNode(usermeta.username))
   un_elm.appendChild(un_elm_a)
 
+  const uicon_elm = document.getElementById("UploadUserIcon")
+  uicon_elm.src = `/user/${user_id}/icon.webp`
+
   const ts_elm = document.getElementById("UploadTS")
   const uploaded_at = new Date(videometa.created_at * 1000)
   const time_elm = document.createElement("time")
@@ -32,7 +35,12 @@ async function mewduct() {
   const desc_elm = document.getElementById("VideoDescriptionText")
   desc_elm.value = local_meta.description || ""
 
-  const plyr = new Plyr("#PlyrVideo")
+  const plyr = new Plyr("#PlyrVideo", {
+    mediaMetadata: {
+      title: sources.title,
+      artist: usermeta.username
+    }
+  })
   plyr.source = sources
 
   if (MEWDUCT_CONFIG.player_additional_1) {

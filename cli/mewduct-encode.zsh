@@ -2,6 +2,7 @@
 
 _dir=${0:a:h}
 
+typeset RESERVE_INDEX_SPACE_SIZE=96k
 typeset -A map_bv=(
   320 300k
   360 300k
@@ -86,6 +87,7 @@ translations: {}
 EOF
 
 typeset ext vcodec scale acodec samesize=no
+typeset -a voopts=()
 if (( video_shorter <= 360 || ${#valid_size} == 0 ))
 then
   ffmpeg -i "$source_file" -c:v libx264 -crf 27 -profile:v baseline "$outdir/default.mp4"
@@ -102,6 +104,15 @@ else
       vcodec=libvpx-vp9
       acodec=libopus
     fi
+
+    case "$ext" in
+      mp4)
+        voopts+=(-movflags +faststart)
+        ;;
+      webm)
+        voopts+=(-reserve_index_space ${RESERVE_INDEX_SPACE_SIZE}})
+        ;;
+    esac
 
     if [[ $video_layout == landscape ]]
     then
@@ -131,7 +142,7 @@ else
 
       if ! {
         ffmpeg -i "$source_file" -c:v "$vcodec" -b:v "${map_bv[$short]}" $scale_params -pass 1 -an -f null /dev/null &&
-        ffmpeg -i "$source_file" -c:v "$vcodec" -b:v "${map_bv[$short]}" $scale_params -pass 2 -c:a $acodec "$outdir/$short.$ext"
+        ffmpeg -i "$source_file" -c:v "$vcodec" -b:v "${map_bv[$short]}" $scale_params -pass 2 -c:a $acodec $voopts "$outdir/$short.$ext"
       }
       then
         rm -v "$outdir/$short.$ext"
