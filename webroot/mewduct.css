@@ -145,7 +145,7 @@ a.video_card_link {
   max-height: 70vh;
 }
 
-.plyr:fullscreen video, .plyr--fullscreen-enabled video {
+.plyr:fullscreen video {
   max-width: none !important;
   max-height: none !important;
 }
