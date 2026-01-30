@@ -1,18 +1,12 @@
 #!/bin/zsh
 
 _dir=${0:a:h}
-
-typeset RESERVE_INDEX_SPACE_SIZE=96k
-typeset -A map_bv=(
-  320 300k
-  360 300k
-  426 500k
-  480 500k
-  576 700k
-  640 800k
-  720 1100k
-  1080 1600k
-)
+if [[ -e "${_dir}/mewduct-zsh-config.local.zsh" ]]
+then
+  source "${_dir}/mewduct-zsh-config.local.zsh"
+else
+  source "${_dir}/mewduct-zsh-config.zsh"
+fi
 
 source_file="$1"
 outdir="$2"
@@ -49,7 +43,7 @@ else
 fi
 
 typeset -a valid_size=()
-for i in 320 360 426 480 576 640 720 1080
+for i in ${(k)map_bv}
 do
   if (( video_shorter < i ))
   then
@@ -110,7 +104,7 @@ else
         voopts+=(-movflags +faststart)
         ;;
       webm)
-        voopts+=(-reserve_index_space ${RESERVE_INDEX_SPACE_SIZE}})
+        voopts+=(-reserve_index_space ${RESERVE_INDEX_SPACE_SIZE})
         ;;
     esac
 

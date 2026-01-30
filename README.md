@@ -119,6 +119,8 @@ url.rewrite-once = (
     "^/user\.html/.*" => "/user.html",
     "^/play\.html/.*" => "/play.html",
 )
+
+mimetype.assign = (".mjs" => "application/json")
 ```
 
 ### Apache
