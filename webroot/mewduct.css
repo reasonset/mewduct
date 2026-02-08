@@ -158,7 +158,8 @@ a.video_card_link {
   font-family: inherit;
   font-size: inherit;
   white-space: pre-line;
-  max-height: 10em;
+  max-height: 14em; /* fallback */
+  max-height: 10lh;
   overflow: auto;
   overflow-y: scroll;
 }
