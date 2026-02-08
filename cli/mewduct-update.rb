@@ -1,9 +1,11 @@
 #!/bin/env ruby
 require 'yaml'
 require 'json'
+require 'cgi'
 
 # Update metadatas for video.
 class MewductUpdate
+  URL_REGEXP = %r<(?:http|https|ftp)://[a-zA-Z0-9][a-zA-Z0-9.-]*[a-zA-Z0-9]\.[a-zA-Z.]+(?:/[/a-zA-Z_%=?&;:@+$.,!~*'()-]*)?>
   def usage
     abort "mewduct-update.rb <webroot_dir> <user_id> <media_id>"
   end
@@ -131,6 +133,13 @@ class MewductUpdate
     converted_captions.empty? ? nil : converted_captions
   end
 
+  def create_rendered_description text=""
+    safe_text = CGI.escape_html text
+    rendered = safe_text.gsub(URL_REGEXP) do |url|
+      "<a href=\"#{url}\" target=\"_blank\">#{url}</a>"
+    end
+  end
+
   def write_sources
     data = create_sources
     File.open(File.join(@webroot, "media", @user_id, @media_id, "sources.json"), "w") do |f|
@@ -144,6 +153,7 @@ class MewductUpdate
     titlemeta["updated_at"] = @now.to_i
     titlemeta["user_id"] = @user_id
     titlemeta["media_id"] = @media_id
+    titlemeta["rendered"] = create_rendered_description(titlemeta["description"])
 
     File.open(File.join(@webroot, "media", @user_id, @media_id, "meta.json"), "w") do |f|
       JSON.dump titlemeta, f

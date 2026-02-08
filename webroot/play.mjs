@@ -33,7 +33,11 @@ async function mewduct() {
   ts_elm.appendChild(time_elm)
 
   const desc_elm = document.getElementById("VideoDescriptionText")
-  desc_elm.value = local_meta.description || ""
+  if (local_meta.rendered) {
+    desc_elm.appendChild(local_meta.rendered)
+  } else {
+    desc_elm.textContent = local_meta.description || ""
+  }
 
   const plyr = new Plyr("#PlyrVideo", {
     mediaMetadata: {

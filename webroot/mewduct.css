@@ -157,6 +157,10 @@ a.video_card_link {
   border: 1px solid #999;
   font-family: inherit;
   font-size: inherit;
+  white-space: pre-line;
+  max-height: 10em;
+  overflow: auto;
+  overflow-y: scroll;
 }
 
 #VideoReaction {
