@@ -34,7 +34,7 @@ async function mewduct() {
 
   const desc_elm = document.getElementById("VideoDescriptionText")
   if (local_meta.rendered) {
-    desc_elm.appendChild(local_meta.rendered)
+    desc_elm.innerHTML = local_meta.rendered
   } else {
     desc_elm.textContent = local_meta.description || ""
   }
