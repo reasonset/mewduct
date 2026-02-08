@@ -49,9 +49,9 @@ fi
 
 if (( TIGERROAD_MODE > 0 ))
 then
-  ${_dir:h}/tigerroad/cli/rigerroad-update.rb "${webroot:a}/$user/$media_id/meta.json"
-  ${_dir:h}/tigerroad/cli/rigerroad-user.rb "${webroot:a}/user/$user"
-  ${_dir:h}/tigerroad/cli/rigerroad-home.rb "${webroot:a}"
+  ${_dir:h}/tigerroad/cli/tigerroad-update.rb "${webroot:a}/$user/$media_id/meta.json"
+  ${_dir:h}/tigerroad/cli/tigerroad-user.rb "${webroot:a}/user/$user"
+  ${_dir:h}/tigerroad/cli/tigerroad-home.rb "${webroot:a}"
 fi
 
 print "New video ID"
