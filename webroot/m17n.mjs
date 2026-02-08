@@ -9,8 +9,9 @@ export function localizeMeta(meta) {
   }
 
   const original = {
-      title: meta.title,
-      description: meta.description
+    title: meta.title,
+    description: meta.description,
+    rendered: meta.rendered
   }
 
   if (user_prefer.includes(meta.lang) || !meta.translations) {
@@ -21,7 +22,8 @@ export function localizeMeta(meta) {
       if (meta.translations[i]) {
         return {
           title: (meta.translations[i].title || original.title),
-          description: (meta.translations[i].description || original.description)
+          description: (meta.translations[i].description || original.description),
+          rendered: meta.translations[i].rendered
         }
       }
     }

@@ -5,7 +5,7 @@ require 'cgi'
 
 # Update metadatas for video.
 class MewductUpdate
-  URL_REGEXP = %r<(?:http|https|ftp)://[a-zA-Z0-9][a-zA-Z0-9.-]*[a-zA-Z0-9]\.[a-zA-Z.]+(?:/[/a-zA-Z_%=?&;:@+$.,!~*'()-]*)?>
+  URL_REGEXP = %r<(?:http|https|ftp)://[a-zA-Z0-9][a-zA-Z0-9.-]*[a-zA-Z0-9]\.[a-zA-Z.]+(?:/[/a-zA-Z0-9_%=?&;:@+$.,!~*'()-]*)?>
   def usage
     abort "mewduct-update.rb <webroot_dir> <user_id> <media_id>"
   end
@@ -154,6 +154,11 @@ class MewductUpdate
     titlemeta["user_id"] = @user_id
     titlemeta["media_id"] = @media_id
     titlemeta["rendered"] = create_rendered_description(titlemeta["description"])
+    if titlemeta["translations"]
+      titlemeta["translations"].each do |k,v|
+        v["rendered"] = create_rendered_description(titlemeta["description"])
+      end
+    end
 
     File.open(File.join(@webroot, "media", @user_id, @media_id, "meta.json"), "w") do |f|
       JSON.dump titlemeta, f
