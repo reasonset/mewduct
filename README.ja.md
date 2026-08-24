@@ -1,6 +1,6 @@
 # Mewduct
 
-![Mewduct Logo](doc/img/mewduct-logo.png)
+![Mewduct Logo](doc/img/mewduct-logo-full.webp)
 
 Video streaming CMS without a server-side application
 

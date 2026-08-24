@@ -18,7 +18,7 @@
       <header id="TitleBanner">
         <div id="TitleBannerLeft">
           <a href="/">
-            <h1><img src="/assets/mewduct-logo.svg" id="AppLogo" />MewDuct</h1>
+            <h1><img src="/assets/mewduct-logo-full.svg" id="AppLogo" alt="Mewduct" /></h1>
           </a>
         </div>
         <div id="TitleBannerCenter"></div>
@@ -32,7 +32,7 @@
           <h2 id="VideoTitle"></h2>
           <div><img id="UploadUserIcon" class="usericon_small" /><span id="UploadUser"></span> <span id="UploadTS"></span></div>
           <section id="VideoReaction">
-            <button class="reaction_button" data-reactiontype="good">👍️</button>
+            <button class="reaction_button" data-reactiontype="like">👍️</button>
             <button class="reaction_button" data-reactiontype="favorite">⭐️</button>
             <button class="reaction_button" data-reactiontype="love">♥️</button>
             <span id="LikeCount"></span>
@@ -40,7 +40,7 @@
               <button class="reaction_button" data-reactiontype="boo" data-negative="yes">👎️</button>
             </div>
           </section>
-          <div id="VideoDescriptionText"></div>
+          <textarea id="VideoDescriptionText" readonly="readonly" rows="8"></textarea>
           <section id="PlayerAdditionalSection1"></section>
           <section id="PlayerAdditionalSection2"></section>
         </section>
